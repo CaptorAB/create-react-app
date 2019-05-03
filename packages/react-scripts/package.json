@@ -1,10 +1,10 @@
 {
-  "name": "react-scripts",
+  "name": "captor-react-scripts",
   "version": "3.0.0",
-  "description": "Configuration and scripts for Create React App.",
+  "description": "Configuration and scripts for Create React App. Fork from facebook/create-react-script@3.0.0. MDX-loader added to web.config.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/CaptorAB/create-react-app.git",
     "directory": "packages/react-scripts"
   },
   "license": "MIT",
@@ -29,6 +29,7 @@
   "types": "./lib/react-app.d.ts",
   "dependencies": {
     "@babel/core": "7.4.3",
+    "@mdx-js/loader": "^1.0.16",
     "@svgr/webpack": "4.1.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
@@ -69,6 +70,7 @@
     "postcss-safe-parser": "4.0.1",
     "react-app-polyfill": "^1.0.0",
     "react-dev-utils": "^9.0.0",
+    "remark-emoji": "^2.0.2",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
