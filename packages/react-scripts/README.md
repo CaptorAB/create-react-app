@@ -14,7 +14,7 @@ To create a new app run:
 npx create-react-app <app-name> --scripts-version captor-react-scripts
 ```
 
-Or change to `captor-react-scripts` in an existing app, change in package.json
+Or change to `captor-react-scripts` in an existing app. Change in package.json
 
 ```
   "dependencies": {
