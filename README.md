@@ -1,3 +1,33 @@
+## How to use the `captor-react-scripts`
+
+`captor-react-scripts` is forked from `create-react-app/react-scripts`. The mdx-loader is added to the webpack.config file.
+
+To create a new app run:
+
+```
+npx create-react-app <app-name> --scripts-version captor-react-scripts
+```
+
+Or change to `captor-react-scripts` in an existing app. Change in package.json
+
+```
+  "dependencies": {
+    "react-scripts": "x.x.x",
+    "react": "^x.x.x",
+    "react-dom": "^x.x.x"
+  },
+```
+
+to
+
+```
+  "dependencies": {
+    "captor-react-scripts": "x.x.x",
+    "react": "^x.x.x",
+    "react-dom": "^x.x.x"
+  },
+```
+
 # Create React App [![Build Status](https://travis-ci.org/facebook/create-react-app.svg?branch=master)](https://travis-ci.org/facebook/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)
 
 Create React apps with no build configuration.
