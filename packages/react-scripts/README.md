@@ -6,15 +6,15 @@ Please refer to its documentation:
 - [Getting Started](https://facebook.github.io/create-react-app/docs/getting-started) – How to create a new app.
 - [User Guide](https://facebook.github.io/create-react-app/) – How to develop apps bootstrapped with Create React App.
 
-## How to use the `captor-react-scripts`
+## How to use the `@captor/react-scripts`
 
 To create a new app run:
 
 ```
-npx create-react-app <app-name> --scripts-version captor-react-scripts
+npx create-react-app <app-name> --scripts-version @captor/react-scripts
 ```
 
-Or change to `captor-react-scripts` in an existing app. Change in package.json
+Or change to `@captor/react-scripts` in an existing app. Change in package.json
 
 ```
   "dependencies": {
@@ -28,7 +28,7 @@ to
 
 ```
   "dependencies": {
-    "captor-react-scripts": "x.x.x",
+    "@captor/react-scripts": "x.x.x",
     "react": "^x.x.x",
     "react-dom": "^x.x.x"
   },
