@@ -7,6 +7,9 @@
     "url": "https://github.com/CaptorAB/create-react-app.git",
     "directory": "packages/react-scripts"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=8.10"
