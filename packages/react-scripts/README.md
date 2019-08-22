@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/%40captor%2Freact-scripts.svg)](https://badge.fury.io/js/%40captor%2Freact-scripts)
+[![install size](https://packagephobia.now.sh/badge?p=@captor/react-scripts)](https://packagephobia.now.sh/result?p=@captor/react-scripts)
+
 # @captor/react-scripts
 
 This package includes scripts and configuration used by [Create React App](https://github.com/facebook/create-react-app).<br>
