@@ -528,8 +528,11 @@ module.exports = function(webpackEnv) {
                 {
                   loader: require.resolve('@mdx-js/loader'),
                   options: {
-                    remarkPlugins: [require('remark-emoji')],
-                    rehypePlugins: [],
+                    remarkPlugins: [
+                      require('remark-emoji'),
+                      require('remark-math'),
+                    ],
+                    rehypePlugins: [require('rehype-katex')],
                   },
                 },
               ],

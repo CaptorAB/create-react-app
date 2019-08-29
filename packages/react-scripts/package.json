@@ -1,6 +1,6 @@
 {
   "name": "@captor/react-scripts",
-  "version": "3.1.1-a",
+  "version": "3.1.1-b",
   "description": "Configuration and scripts for Create React App. Fork from facebook/create-react-script@3.0.0. MDX-loader with rehype & remark packages added to web.config.",
   "repository": {
     "type": "git",
