@@ -34,7 +34,7 @@ to
   },
 ```
 
-# How to upgrade version
+# How to upgrade `@captor/react-scripts` version
 
 1. Clone the both repos into two local folders.
 2. Do file compare (use eg. Beyond Compare).
@@ -53,6 +53,22 @@ to
 - remark-math
 7. Carefully update packages/react-scripts/config/webpack.config.js. Keep mdx- and wasm-loader sections.
 8. Carefully update packages/react-scripts/config/README.md. Keep badges and @captor/react-scripts section.
+
+# How to publish `@captor/react-scripts`
+
+```
+cd packages/react-scripts
+```
+
+Double-check that package.json has right version:
+```
+npm publish --dry-run
+```
+
+Publish:
+```
+npm publish
+```
 
 # Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/blob/master/CONTRIBUTING.md)
 
