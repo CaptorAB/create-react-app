@@ -28,7 +28,7 @@ to
   },
 ```
 
-## How to upgrade version
+# How to upgrade version
 
 1. Clone the both repos into two local folders.
 2. Do file compare (use eg. Beyond Compare).
