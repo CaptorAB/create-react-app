@@ -2,10 +2,16 @@
 
 `@captor/react-scripts` is forked from `create-react-app/react-scripts`. The mdx-loader is added to the webpack.config file.
 
-To create a new app run:
+To create a new app, run:
 
 ```
 npx create-react-app <app-name> --scripts-version @captor/react-scripts
+```
+
+To create a new app including typescript, run:
+
+```
+npx create-react-app <app-name> --scripts-version @captor/react-scripts --template typescript
 ```
 
 Or change to `@captor/react-scripts` in an existing app. Change in package.json
