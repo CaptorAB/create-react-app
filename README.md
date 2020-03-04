@@ -36,7 +36,7 @@ to
 
 # How to upgrade `@captor/react-scripts` version
 
-1. Clone the both repos into two local folders.
+1. Clone the both repos (https://github.com/facebook/create-react-app and https://github.com/CaptorAB/create-react-app) into two local folders.
 2. Do file compare (use eg. Beyond Compare).
 3. Remove files from @captor that are not in @facebook anymore.
 4. Moved all files from @facebook to @captor, except the following four files (and do not copy .git and .github):
