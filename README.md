@@ -1,3 +1,96 @@
+# How to use the `@captor/react-scripts`
+
+`@captor/react-scripts` is forked from `create-react-app/react-scripts`. The mdx-loader is added to the webpack.config file.
+
+To create a new app, run:
+
+```
+npx create-react-app <app-name> --scripts-version @captor/react-scripts
+```
+
+To create a new app including typescript, run:
+
+```
+npx create-react-app <app-name> --scripts-version @captor/react-scripts --template typescript
+```
+
+Or change to `@captor/react-scripts` in an existing app. Change in package.json
+
+```
+  "dependencies": {
+    "react-scripts": "x.x.x",
+    "react": "^x.x.x",
+    "react-dom": "^x.x.x"
+  },
+```
+
+to
+
+```
+  "dependencies": {
+    "@captor/react-scripts": "x.x.x",
+    "react": "^x.x.x",
+    "react-dom": "^x.x.x"
+  },
+```
+
+# How to upgrade `@captor/react-scripts` version
+
+1. Clone the both repos (https://github.com/facebook/create-react-app and https://github.com/CaptorAB/create-react-app) into two local folders.
+2. Do file compare (use eg. Beyond Compare).
+3. Remove files from @captor that are not in @facebook anymore.
+4. Moved all files from @facebook to @captor, except the following four files (and do not copy .git and .github):
+- README.md
+- packages/react-scripts/package.json
+- packages/react-scripts/README.md
+- packages/react-scripts/config/webpack.config.js
+5. Keep first part of @captor:README.md. Copy the rest from @facebook.
+6. Carefully update packages/react-scripts/package.json. Keep "name", "description", "publishConfig" "repository.url". In "dependencies" keep (but upgrade to latest version): 
+- @mdx-js/loader
+- node-sass
+- rehype-katex
+- remark-emoji
+- remark-math
+7. Carefully update packages/react-scripts/config/webpack.config.js. Keep mdx- and wasm-loader sections.
+8. Carefully update packages/react-scripts/config/README.md. Keep badges and @captor/react-scripts section.
+
+
+## or 
+
+Ensure master is in sync with upstream/master:
+```
+git checkout facebook
+git remote add upstream git@github.com:facebook/create-react-app.git
+git fetch upstream
+git reset --hard upstream/master
+git push --force-with-lease
+```
+
+Rebase fork on top of a tagged release on master:
+```
+git checkout fork
+git rebase <commit>
+```
+
+etc
+
+
+# How to publish `@captor/react-scripts`
+
+```
+cd packages/react-scripts
+```
+
+Double-check that package.json has right version:
+```
+npm publish --dry-run
+```
+
+Publish:
+```
+npm publish
+```
+
 # Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/blob/master/CONTRIBUTING.md)
 
 <img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />

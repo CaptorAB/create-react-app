@@ -1,11 +1,14 @@
 {
-  "name": "react-scripts",
+  "name": "@captor/react-scripts",
   "version": "4.0.1",
-  "description": "Configuration and scripts for Create React App.",
+  "description": "Configuration and scripts for Create React App. Fork from facebook/create-react-script. MDX-loader with rehype & remark packages and wasm-loader added to webpack.config.js and node-sass added.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/CaptorAB/create-react-app.git",
     "directory": "packages/react-scripts"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "license": "MIT",
   "engines": {
@@ -29,6 +32,7 @@
   "types": "./lib/react-app.d.ts",
   "dependencies": {
     "@babel/core": "7.12.3",
+    "@mdx-js/loader": "^1.5.7",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
     "@svgr/webpack": "5.4.0",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
@@ -73,6 +77,9 @@
     "prompts": "2.4.0",
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.1",
+    "rehype-katex": "^2.0.0",
+    "remark-emoji": "^2.0.2",
+    "remark-math": "^2.0.0",
     "react-refresh": "^0.8.3",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
