@@ -1,3 +1,82 @@
+# How to use the `@captor/react-scripts`
+
+`@captor/react-scripts` is forked from `create-react-app/react-scripts`. The mdx-loader is added to the webpack.config file.
+
+To create a new app, run:
+
+```bash
+npx create-react-app <app-name> --scripts-version @captor/react-scripts
+```
+
+To create a new app including typescript, run:
+
+```bash
+npx create-react-app <app-name> --scripts-version @captor/react-scripts --template typescript
+```
+
+Or change to `@captor/react-scripts` in an existing app. Change in package.json
+
+```bash
+  "dependencies": {
+    "react-scripts": "x.x.x",
+    "react": "^x.x.x",
+    "react-dom": "^x.x.x"
+  },
+```
+
+to
+
+```bash
+  "dependencies": {
+    "@captor/react-scripts": "x.x.x",
+    "react": "^x.x.x",
+    "react-dom": "^x.x.x"
+  },
+```
+
+# How to upgrade `@captor/react-scripts` version
+
+Ensure master is in sync with upstream/master:
+
+```bash
+git checkout facebook
+git remote add upstream git@github.com:facebook/create-react-app.git
+git fetch upstream
+git reset --hard upstream/master
+git push --force-with-lease
+```
+
+Rebase fork on top of a tagged release of upstream/master:
+
+```bash
+git checkout fork
+git rebase <commit>
+```
+
+```text
+Note: <commit> should be the SHA-1 of the latest upstream release - not just the latest i.e. upstream/master
+```
+
+etc
+
+# How to publish `@captor/react-scripts`
+
+```
+cd packages/react-scripts
+```
+
+Double-check that package.json has right version:
+
+```
+npm publish --dry-run
+```
+
+Publish:
+
+```
+npm publish
+```
+
 # Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/blob/master/CONTRIBUTING.md)
 
 <img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />
@@ -217,4 +296,4 @@ We are grateful to the authors of existing related projects for their ideas and 
 
 ## License
 
-Create React App is open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE). The Create React App logo is licensed  under a [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).
+Create React App is open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE). The Create React App logo is licensed under a [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).

@@ -166,12 +166,13 @@ checkBrowsers(paths.appPath, isInteractive)
       });
     });
 
-    if (process.env.CI !== 'true') {
+    if (isInteractive || process.env.CI !== 'true') {
       // Gracefully exit when stdin ends
-      process.stdin.on('end', function () {
+      process.stdin.on('end', function() {
         devServer.close();
         process.exit();
       });
+      process.stdin.resume();
     }
   })
   .catch(err => {
