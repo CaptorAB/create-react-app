@@ -33,7 +33,6 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 // @remove-on-eject-begin
-const eslint = require('eslint');
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
 const postcssNormalize = require('postcss-normalize');
@@ -45,6 +44,8 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
+
+const isExtendingEslintConfig = process.env.EXTEND_ESLINT === 'true';
 
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
@@ -346,28 +347,13 @@ module.exports = function(webpackEnv) {
                 eslintPath: require.resolve('eslint'),
                 resolvePluginsRelativeTo: __dirname,
                 // @remove-on-eject-begin
-                ignore: process.env.EXTEND_ESLINT === 'true',
-                baseConfig: (() => {
-                  // We allow overriding the config only if the env variable is set
-                  if (process.env.EXTEND_ESLINT === 'true') {
-                    const eslintCli = new eslint.CLIEngine();
-                    let eslintConfig;
-                    try {
-                      eslintConfig = eslintCli.getConfigForFile(
-                        paths.appIndexJs
-                      );
-                    } catch (e) {
-                      console.error(e);
-                      process.exit(1);
-                    }
-                    return eslintConfig;
-                  } else {
-                    return {
+                ignore: isExtendingEslintConfig,
+                baseConfig: isExtendingEslintConfig
+                  ? undefined
+                  : {
                       extends: [require.resolve('eslint-config-react-app')],
-                    };
-                  }
-                })(),
-                useEslintrc: false,
+                    },
+                useEslintrc: isExtendingEslintConfig,
                 // @remove-on-eject-end
               },
               loader: require.resolve('eslint-loader'),
@@ -483,6 +469,72 @@ module.exports = function(webpackEnv) {
                 inputSourceMap: shouldUseSourceMap,
               },
             },
+            // This loader creates JavaScript files out of Markdown files, where
+            // the JavaScript files export a single React component.
+            {
+              test: /\.mdx?$/,
+              include: paths.appSrc,
+              use: [
+                {
+                  loader: require.resolve('babel-loader'),
+                  options: {
+                    customize: require.resolve(
+                      'babel-preset-react-app/webpack-overrides'
+                    ),
+                    // @remove-on-eject-begin
+                    babelrc: false,
+                    configFile: false,
+                    presets: [require.resolve('babel-preset-react-app')],
+                    // Make sure we have a unique cache identifier, erring on the
+                    // side of caution.
+                    // We remove this when the user ejects because the default
+                    // is sane and uses Babel options. Instead of options, we use
+                    // the react-scripts and babel-preset-react-app versions.
+                    cacheIdentifier: getCacheIdentifier(
+                      isEnvProduction
+                        ? 'production'
+                        : isEnvDevelopment && 'development',
+                      [
+                        'babel-plugin-named-asset-import',
+                        'babel-preset-react-app',
+                        'react-dev-utils',
+                        'react-scripts',
+                      ]
+                    ),
+                    // @remove-on-eject-end
+                    plugins: [
+                      [
+                        require.resolve('babel-plugin-named-asset-import'),
+                        {
+                          loaderMap: {
+                            svg: {
+                              ReactComponent:
+                                '@svgr/webpack?-prettier,-svgo![path]',
+                            },
+                          },
+                        },
+                      ],
+                    ],
+                    // This is a feature of `babel-loader` for webpack (not Babel itself).
+                    // It enables caching results in ./node_modules/.cache/babel-loader/
+                    // directory for faster rebuilds.
+                    cacheDirectory: true,
+                    cacheCompression: isEnvProduction,
+                    compact: isEnvProduction,
+                  },
+                },
+                {
+                  loader: require.resolve('@mdx-js/loader'),
+                  options: {
+                    remarkPlugins: [
+                      require('remark-emoji'),
+                      require('remark-math'),
+                    ],
+                    rehypePlugins: [require('rehype-katex')],
+                  },
+                },
+              ],
+            },
             // "postcss" loader applies autoprefixer to our CSS.
             // "css" loader resolves paths in CSS and adds assets as dependencies.
             // "style" loader turns CSS into JS modules that inject <style> tags.
@@ -548,6 +600,14 @@ module.exports = function(webpackEnv) {
                 },
                 'sass-loader'
               ),
+            },
+            {
+              test: /\.wasm$/,
+              type: 'javascript/auto',
+              loader: 'file-loader',
+              options: {
+                name: 'static/js/[name].[hash:8].[ext]',
+              },
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
